@@ -159,7 +159,9 @@ async function ec2Handler(context: CliContext, options: Record<string, unknown>)
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
+  return renderInventory(
+    context,
+    data,
     () => data.instances.map((i) => ({ id: i.id, accountId: i.accountId, region: i.region, state: i.state })),
     (format) => renderEc2(format, data),
   );
@@ -174,7 +176,9 @@ async function rdsHandler(context: CliContext, options: Record<string, unknown>)
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
+  return renderInventory(
+    context,
+    data,
     () => data.instances.map((i) => ({ id: i.id, accountId: i.accountId, region: i.region })),
     (format) => renderRds(format, data),
   );
@@ -189,7 +193,9 @@ async function elasticacheHandler(context: CliContext, options: Record<string, u
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
+  return renderInventory(
+    context,
+    data,
     () => data.clusters.map((c) => ({ id: c.id, accountId: c.accountId, region: c.region, state: c.state })),
     (format) => renderElasticache(format, data),
   );
@@ -204,7 +210,9 @@ async function opensearchHandler(context: CliContext, options: Record<string, un
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
+  return renderInventory(
+    context,
+    data,
     () => data.clusters.map((c) => ({ id: c.id, accountId: c.accountId, region: c.region })),
     (format) => renderOpensearch(format, data),
   );
@@ -219,7 +227,9 @@ async function eksHandler(context: CliContext, options: Record<string, unknown>)
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
+  return renderInventory(
+    context,
+    data,
     () => data.clusters.map((c) => ({ id: c.id, accountId: c.accountId, region: c.region, state: c.status })),
     (format) => renderEks(format, data),
   );
@@ -234,7 +244,9 @@ async function ebsHandler(context: CliContext, options: Record<string, unknown>)
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
+  return renderInventory(
+    context,
+    data,
     () => data.volumes.map((v) => ({ id: v.id, accountId: v.accountId, region: v.region, state: v.state })),
     (format) => renderEbs(format, data),
   );
@@ -249,14 +261,17 @@ async function eksNodegroupsHandler(context: CliContext, options: Record<string,
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
-    () => data.nodeGroups.map((n) => ({
-      id: n.id,
-      clusterId: n.clusterId,
-      accountId: n.accountId,
-      region: n.region,
-      state: n.status,
-    })),
+  return renderInventory(
+    context,
+    data,
+    () =>
+      data.nodeGroups.map((n) => ({
+        id: n.id,
+        clusterId: n.clusterId,
+        accountId: n.accountId,
+        region: n.region,
+        state: n.status,
+      })),
     (format) => renderEksNodegroups(format, data),
   );
 }
@@ -270,14 +285,17 @@ async function opensearchNodesHandler(context: CliContext, options: Record<strin
     organizationId,
     organizationName,
   );
-  return renderInventory(context, data,
-    () => data.nodes.map((n) => ({
-      id: n.id,
-      clusterId: n.clusterId,
-      accountId: n.accountId,
-      region: n.region,
-      state: n.status,
-    })),
+  return renderInventory(
+    context,
+    data,
+    () =>
+      data.nodes.map((n) => ({
+        id: n.id,
+        clusterId: n.clusterId,
+        accountId: n.accountId,
+        region: n.region,
+        state: n.status,
+      })),
     (format) => renderOpensearchNodes(format, data),
   );
 }
