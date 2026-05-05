@@ -41,6 +41,22 @@ npx @milkstraw/cli setup
 | `milkstraw status` | Check deployment status |
 | `milkstraw update` | Update deployed stacks to latest templates |
 | `milkstraw org list` | List accessible organizations |
+| `milkstraw inventory ec2 list` | List EC2 on-demand instances |
+| `milkstraw inventory rds list` | List RDS on-demand instances |
+| `milkstraw inventory elasticache list` | List ElastiCache on-demand clusters |
+| `milkstraw inventory opensearch list` | List OpenSearch on-demand clusters |
+| `milkstraw inventory opensearch nodes list` | List OpenSearch nodes across all clusters |
+| `milkstraw inventory eks list` | List EKS clusters |
+| `milkstraw inventory eks nodegroups list` | List EKS node groups across all clusters |
+| `milkstraw inventory ebs list` | List EBS volumes |
+| `milkstraw commitments ec2 list` | List EC2 Reserved Instances |
+| `milkstraw commitments rds list` | List RDS Reserved Instances |
+| `milkstraw commitments elasticache list` | List ElastiCache Reserved Instances |
+| `milkstraw commitments opensearch list` | List OpenSearch Reserved Instances |
+| `milkstraw commitments savings_plans compute list` | List Compute Savings Plans |
+| `milkstraw commitments savings_plans ec2_instance list` | List EC2 Instance Savings Plans |
+| `milkstraw commitments savings_plans sage_maker list` | List SageMaker Savings Plans |
+| `milkstraw commitments savings_plans database list` | List Database Savings Plans |
 
 ## Global Options
 

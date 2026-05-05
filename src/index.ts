@@ -34,6 +34,8 @@ async function main() {
   const { registerStatusCommand } = await import('./commands/status.js');
   const { registerUpdateCommand } = await import('./commands/update.js');
   const { registerOrgCommand } = await import('./commands/org.js');
+  const { registerInventoryCommand } = await import('./commands/inventory.js');
+  const { registerCommitmentsCommand } = await import('./commands/commitments.js');
 
   registerLoginCommand(program);
   registerLogoutCommand(program);
@@ -41,6 +43,8 @@ async function main() {
   registerStatusCommand(program);
   registerUpdateCommand(program);
   registerOrgCommand(program);
+  registerInventoryCommand(program);
+  registerCommitmentsCommand(program);
 
   await program.parseAsync(process.argv);
 }

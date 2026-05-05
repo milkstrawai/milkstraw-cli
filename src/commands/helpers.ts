@@ -1,5 +1,6 @@
 import type { Command } from 'commander';
 import type { CliFlags } from '../config/resolver.js';
+import { resolveOrganizationFromContext } from '../context/organization.js';
 import { buildContext, runCommand, runInteractiveCommand } from '../core/cli.js';
 import type { CliContext } from '../core/context.js';
 import { AuthRequiredError } from '../core/errors.js';
@@ -48,6 +49,18 @@ export async function requireToken(context: CliContext): Promise<string> {
   if (token) return token;
 
   throw new AuthRequiredError();
+}
+
+export interface ResolvedCall {
+  token: string;
+  organizationId: string;
+  organizationName: string;
+}
+
+export async function prepareCall(context: CliContext, options: Record<string, unknown>): Promise<ResolvedCall> {
+  const token = await requireToken(context);
+  const org = await resolveOrganizationFromContext(context, token, options.org as string | undefined);
+  return { token, organizationId: org.organizationId, organizationName: org.organizationName };
 }
 
 function optionalString(value: unknown): string | undefined {
