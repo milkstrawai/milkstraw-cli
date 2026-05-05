@@ -1,6 +1,6 @@
 {
   "name": "@milkstraw/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MilkStraw AI CLI - AI-powered cloud cost optimization",
   "type": "module",
   "bin": {
