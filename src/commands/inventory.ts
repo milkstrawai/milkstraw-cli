@@ -401,7 +401,7 @@ function renderOpensearch(format: ComponentRenderFormat, data: OpensearchInvento
     engine: c.platform,
     region: c.region,
     dataNodes: `${c.dataNodesCount}× ${c.dataNodesType}`,
-    masterNodes: c.dedicatedMasterEnabled ? `${c.masterNodesCount}× ${c.masterNodesType}` : '-',
+    masterNodes: c.masterNodesCount > 0 ? `${c.masterNodesCount}× ${c.masterNodesType}` : '-',
     multiAz: formatBoolean(c.multiAz),
     account: c.accountId,
     price: formatPriceMonthly(c.price),

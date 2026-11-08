@@ -206,7 +206,6 @@ export interface OpensearchCluster {
   dataNodesType: string;
   masterNodesCount: number;
   masterNodesType: string;
-  dedicatedMasterEnabled: boolean;
   warmEnabled: boolean;
   warmNodesCount: number;
   warmNodesType: string;
@@ -236,7 +235,6 @@ interface RawOpensearchCluster {
   data_nodes_type: string;
   master_nodes_count: number;
   master_nodes_type: string;
-  dedicated_master_enabled: boolean;
   warm_enabled: boolean;
   warm_nodes_count: number;
   warm_nodes_type: string;
@@ -706,7 +704,6 @@ function normalizeOpensearchCluster(raw: RawOpensearchCluster): OpensearchCluste
     dataNodesType: raw.data_nodes_type,
     masterNodesCount: raw.master_nodes_count,
     masterNodesType: raw.master_nodes_type,
-    dedicatedMasterEnabled: raw.dedicated_master_enabled,
     warmEnabled: raw.warm_enabled,
     warmNodesCount: raw.warm_nodes_count,
     warmNodesType: raw.warm_nodes_type,
