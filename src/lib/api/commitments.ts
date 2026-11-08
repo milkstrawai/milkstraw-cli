@@ -108,19 +108,19 @@ export interface OpensearchCommitmentsResponse {
 }
 
 interface RawEc2CommitmentsResponse {
-  items: RawEc2ReservedInstance[];
+  commitments: RawEc2ReservedInstance[];
   summary: RawCommitmentsSummary;
 }
 interface RawRdsCommitmentsResponse {
-  items: RawRdsReservedInstance[];
+  commitments: RawRdsReservedInstance[];
   summary: RawCommitmentsSummary;
 }
 interface RawElasticacheCommitmentsResponse {
-  items: RawElasticacheReservedInstance[];
+  commitments: RawElasticacheReservedInstance[];
   summary: RawCommitmentsSummary;
 }
 interface RawOpensearchCommitmentsResponse {
-  items: RawOpensearchReservedInstance[];
+  commitments: RawOpensearchReservedInstance[];
   summary: RawCommitmentsSummary;
 }
 
@@ -173,7 +173,7 @@ export interface SavingsPlansResponse {
   summary: CommitmentsSummary;
 }
 interface RawSavingsPlansResponse {
-  items: RawSavingsPlan[];
+  commitments: RawSavingsPlan[];
   summary: RawCommitmentsSummary;
 }
 
@@ -188,7 +188,7 @@ export async function getEc2Commitments(
   const response = await apiFetch(path, {}, token);
   const raw = await response.json<RawEc2CommitmentsResponse>();
   return {
-    items: raw.items.map(normalizeEc2Ri),
+    items: raw.commitments.map(normalizeEc2Ri),
     summary: { ...raw.summary },
   };
 }
@@ -202,7 +202,7 @@ export async function getRdsCommitments(
   const response = await apiFetch(path, {}, token);
   const raw = await response.json<RawRdsCommitmentsResponse>();
   return {
-    items: raw.items.map(normalizeRdsRi),
+    items: raw.commitments.map(normalizeRdsRi),
     summary: { ...raw.summary },
   };
 }
@@ -216,7 +216,7 @@ export async function getElasticacheCommitments(
   const response = await apiFetch(path, {}, token);
   const raw = await response.json<RawElasticacheCommitmentsResponse>();
   return {
-    items: raw.items.map(normalizeElasticacheRi),
+    items: raw.commitments.map(normalizeElasticacheRi),
     summary: { ...raw.summary },
   };
 }
@@ -230,7 +230,7 @@ export async function getOpensearchCommitments(
   const response = await apiFetch(path, {}, token);
   const raw = await response.json<RawOpensearchCommitmentsResponse>();
   return {
-    items: raw.items.map(normalizeOpensearchRi),
+    items: raw.commitments.map(normalizeOpensearchRi),
     summary: { ...raw.summary },
   };
 }
@@ -274,7 +274,7 @@ async function getSavingsPlans(
   const response = await apiFetch(path, {}, token);
   const raw = await response.json<RawSavingsPlansResponse>();
   return {
-    items: raw.items.map(normalizeSavingsPlan),
+    items: raw.commitments.map(normalizeSavingsPlan),
     summary: { ...raw.summary },
   };
 }
