@@ -48,7 +48,6 @@ const sample = {
   dataNodesType: 'r7g.xlarge.search',
   masterNodesCount: 3,
   masterNodesType: 'm6g.large.search',
-  dedicatedMasterEnabled: false,
   warmEnabled: false,
   warmNodesCount: 0,
   warmNodesType: 'N/A',
@@ -92,6 +91,21 @@ describe('inventory opensearch list', () => {
     expect(result).toContain('688897985026/demo');
     expect(result).toContain('Elasticsearch');
     expect(result).toContain('1 clusters · 1 accounts · 1 regions');
+  });
+
+  it('shows master nodes only when the cluster has them', async () => {
+    vi.mocked(listOpensearchInventory).mockResolvedValue({
+      clusters: [sample, { ...sample, id: '688897985026/no-masters', masterNodesCount: 0, masterNodesType: 'N/A' }],
+      summary: { total: 2, accounts: 1, regions: 1 },
+    });
+    const program = new Command();
+    registerInventoryCommand(program);
+    const handler = wrapCommandMock.mock.calls[3][0] as any;
+
+    const result = await handler(mockContext(), { account: [], region: [] });
+
+    expect(result).toContain('3× m6g.large.search');
+    expect(result).not.toContain('0× N/A');
   });
 
   it('omits state from quiet projection (opensearch has no state)', async () => {

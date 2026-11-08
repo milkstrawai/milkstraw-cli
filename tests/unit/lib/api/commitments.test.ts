@@ -38,13 +38,13 @@ describe('RI endpoints', () => {
     ['getElasticacheCommitments', getElasticacheCommitments, '/api/organizations/org_1/commitments/elasticache'],
     ['getOpensearchCommitments', getOpensearchCommitments, '/api/organizations/org_1/commitments/opensearch'],
   ])('%s hits the correct URL with no filters', async (_name, fn, expectedPath) => {
-    mockApiFetch.mockResolvedValueOnce(mockResponse({ items: [], summary: baseSummary }));
+    mockApiFetch.mockResolvedValueOnce(mockResponse({ commitments: [], summary: baseSummary }));
     await fn('tok', 'org_1', {});
     expect(mockApiFetch).toHaveBeenCalledWith(expectedPath, {}, 'tok');
   });
 
   it('forwards account/region/state arrays', async () => {
-    mockApiFetch.mockResolvedValueOnce(mockResponse({ items: [], summary: baseSummary }));
+    mockApiFetch.mockResolvedValueOnce(mockResponse({ commitments: [], summary: baseSummary }));
     await getEc2Commitments('tok', 'org_1', {
       accounts: ['111'],
       regions: ['us-east-1'],
@@ -58,7 +58,7 @@ describe('RI endpoints', () => {
   it('normalizes EC2 RI item with required + optional fields', async () => {
     mockApiFetch.mockResolvedValueOnce(
       mockResponse({
-        items: [
+        commitments: [
           {
             id: 'ri-1',
             type: 'm5.large',
@@ -108,7 +108,7 @@ describe('RI endpoints', () => {
   it('normalizes RDS RI with multi_az and optional managed_by', async () => {
     mockApiFetch.mockResolvedValueOnce(
       mockResponse({
-        items: [
+        commitments: [
           {
             id: 'ri-rds',
             type: 'db.r7g.large',
@@ -147,7 +147,7 @@ describe('RI endpoints', () => {
   it('normalizes OpenSearch RI without platform', async () => {
     mockApiFetch.mockResolvedValueOnce(
       mockResponse({
-        items: [
+        commitments: [
           {
             id: 'ri-opn',
             type: 'm6g.large.search',
@@ -191,7 +191,7 @@ describe('SP endpoints', () => {
     ],
     ['getDatabaseSavingsPlans', getDatabaseSavingsPlans, '/api/organizations/org_1/commitments/savings_plans/database'],
   ])('%s hits the correct URL with no filters', async (_name, fn, expectedPath) => {
-    mockApiFetch.mockResolvedValueOnce(mockResponse({ items: [], summary: baseSummary }));
+    mockApiFetch.mockResolvedValueOnce(mockResponse({ commitments: [], summary: baseSummary }));
     await fn('tok', 'org_1', {});
     expect(mockApiFetch).toHaveBeenCalledWith(expectedPath, {}, 'tok');
   });
@@ -199,7 +199,7 @@ describe('SP endpoints', () => {
   it('normalizes compute SP item with optional managed_by', async () => {
     mockApiFetch.mockResolvedValueOnce(
       mockResponse({
-        items: [
+        commitments: [
           {
             id: 'sp-1',
             service: 'compute',

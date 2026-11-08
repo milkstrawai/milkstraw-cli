@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `milkstraw commitments` reads the API's `commitments` key, which replaced `items`.
+- `milkstraw inventory opensearch list` shows master nodes whenever a cluster has them, since the API no longer sends `dedicated_master_enabled`.
+
 ## [0.1.1] - 2026-05-05
 
 ### Added
